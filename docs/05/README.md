@@ -3,7 +3,7 @@
 서블릿 3.0 이상부터 스프링은 web.xml을 자바 클래스로 대체할 수 있도록 `WebApplicationInitializer`라는 인터페이스를 제공합니다.
 JavaConfig와 함께 사용하여 모든 설정을 "프로그램적으로(programmatically)" [구성](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-container-config)할 수 있게 되었습니다. 
 
-스프링은 `WebApplicationInitializer` 구현체인 `AbstractAnnotationConfigDispatcherServletInitializer`을 제공하고 있으므로 이것을 상속하여 간단하게 자바 클래스 설정으로 변경할 수 있습니다. 아래 코드는 `web.xml`을 삭제하고 대체하는 자바 클래스입니다.
+스프링은 `WebApplicationInitializer` 구현체인 `AbstractAnnotationConfigDispatcherServletInitializer`을 제공하고 있으므로 이것을 상속하여 간단하게 자바 클래스 설정으로 변경할 수 있습니다. 아래 코드는 `web.xml`을 제거하고 대체하는 자바 클래스입니다.
 
 ```
 public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -41,7 +41,7 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 ```
 `getRootConfigClasses`는 애플리케이션 컨텍스트에 해당하는 JavaConfig 클래스를 리턴하면 되고 `getServletConfigClasses`는 웹 애플리케이션 컨텍스트를 설정하는 클래스를 리턴하면 되겠습니다. `getServletMappings`은 `DispatcherServlet`이 처리하는 URL 패턴 매핑입니다. `CharacterEncodingFilter` 필터도 설정도 `onStartup` 메소드를 오버라이드하여 추가되었습니다.
 
-`servlet-context.xml`을 삭제하고 대체하는 클래스는 `WebConfig`라는 이름으로 만들 수 있습니다.
+`servlet-context.xml`을 제거하고 대체하는 클래스는 `WebConfig`라는 이름으로 만들었습니다. `@EnableWebMvc`은 `<mvc:annotation-driven/>`에 해당하는 어노테이션입니다.
 
 ```
 
