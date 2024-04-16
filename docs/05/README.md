@@ -48,18 +48,17 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.foo.myapp"}, 
-               includeFilters = {@ComponentScan.Filter(type=FilterType.ANNOTATION, value=Controller.class)}, 
-               excludeFilters = {
-            		   @ComponentScan.Filter(type=FilterType.ANNOTATION, value=Service.class),
-            		   @ComponentScan.Filter(type=FilterType.ANNOTATION, value=Repository.class)
-               })
+        includeFilters = {@ComponentScan.Filter(type=FilterType.ANNOTATION, value=Controller.class)}, 
+        excludeFilters = {
+        		@ComponentScan.Filter(type=FilterType.ANNOTATION, value=Service.class),
+        		@ComponentScan.Filter(type=FilterType.ANNOTATION, value=Repository.class)
+        })
 public class WebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/static/");
 	}
-
 	
 	@Bean
 	public SpringResourceTemplateResolver templateResolver() {		
