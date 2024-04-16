@@ -4,7 +4,7 @@
 
 >Jakarta Servlet defines a server-side API for handling HTTP requests and responses.
 
-서블릿은 서블릿 "컨테이너(서버)"에서 실행되는 프로그램이라고 할 수 있습니다. 사용자의 HTTP 요청을 받아서 동적인 컨텐츠를 만들어 HTTP 응답으로 리턴하는 프로그램으로 생각하면 될 것 같습니다. 스펙에 의해 특별한 경우가 아니라면 서블릿 컨테이너는 서블릿 인스턴스를 하나만 생성해야 하기 때문에 서블릿은 thread-safe 하지 않습니다. 
+서블릿은 서블릿 "컨테이너(서버)"에서 실행되는 프로그램이라고 할 수 있습니다. 사용자의 HTTP 요청을 받아서 동적인 컨텐츠를 만들어 HTTP 응답으로 리턴하는 프로그램으로 생각하면 될 것 같습니다. 스펙에 따르면 특별한 경우가 아니라면 서블릿 컨테이너는 서블릿 인스턴스를 하나만 생성해야 하기 때문에 서블릿은 "thread-safe" 하지 않습니다. 
 
 >For a servlet not hosted in a distributed environment (the default), the servlet container must use only one instance per servlet declaration
 
