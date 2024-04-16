@@ -136,7 +136,7 @@ public class HomeController {
 	}
 }
 ```
-이 컨트롤러는 단순히 서버 시간을 model에 넣고 리턴합니다. 스프링 MVC에서 뷰를 담당하는 인터페이스를 "뷰 리졸버(View resolver)"라고 하는데 예제에서는 Thymeleaf를 사용합니다. `org.thymeleaf.spring5.view.ThymeleafViewResolver`는 스프링의 `org.springframework.web.servlet.ViewResolver` 인터페이스를 구현하고 있습니다. 컨트롤러에서 리턴되는 "home"이라는 문자열을 받아서 "/WEB-INF/views/home.html"을 만듭니다. 최종적으로 톰캣은 home.html을 응답으로 전송하면 브라우저에 표시됩니다.
+이 컨트롤러는 단순히 서버 시간을 model에 넣고 리턴합니다. 스프링 MVC에서 뷰를 담당하는 인터페이스를 "뷰 리졸버(View resolver)"라고 하는데 예제에서는 Thymeleaf를 사용합니다. `org.thymeleaf.spring5.view.ThymeleafViewResolver`는 스프링의 `org.springframework.web.servlet.ViewResolver` 인터페이스를 구현하고 있습니다. 컨트롤러에서 리턴되는 "home"이라는 문자열을 받아서 "/WEB-INF/views/home.html"을 만듭니다. 최종적으로 톰캣은 home.html을 응답으로 전송하고, 사용자는 브라우저를 통해 웹페이지를 보게 됩니다.
 
 
 
