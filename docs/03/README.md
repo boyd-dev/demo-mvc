@@ -46,7 +46,7 @@
         <url-pattern>/*</url-pattern>
 </servlet-mapping>
 ```
-`servlet-context.xml`이 바로 빈 설정 파일에 해당합니다. 이름이 "서블릿 컨텍스트"라는 것은 서블릿 객체인 `ServletContext`의 역할을 하기 때문입니다. 디스패처는 HTTP 요청을 받아서 적절한 컨트롤러에 매핑시켜주는 "핸들러 매핑" 기능과 결과를 브라우저에서 볼 수 있도록 가공하는 "뷰 리졸버"를 실행합니다.
+`servlet-context.xml`이 바로 빈 설정 파일에 해당합니다. 이름이 "서블릿 컨텍스트"라는 것은 서블릿 객체인 `ServletContext`의 역할을 하기 때문입니다. 디스패처는 HTTP 요청을 받아서 적절한 컨트롤러에 매핑시켜주는 "핸들러 매핑" 기능과 결과를 브라우저에서 볼 수 있도록 가공하는 "뷰 처리기"를 실행합니다.
 
 디스패처 서블릿은 `<servlet-mapping>`의 `<url-pattern>`에 설정된 요청 패턴을 처리합니다. 서블릿 스펙에서는 이러한 URL 패턴 매칭에 대해서 아래와 같은 규칙을 정하고 있습니다.  
 
@@ -112,7 +112,7 @@ and the path info is null.
 ```
 스프링 MVC가 제공하는 `<mvc:>` 네임스페이스가 사용되었습니다. 웹 컨텍스트에서는 컨트롤러들만 배치해야 하므로 컴포넌트 자동 스캔에서는 `@Controller`만을 포함시킵니다. <b>아직 서비스와 레포지토리들이 없으므로 "root" 컨텍스트 설정은 하지 않았습니다.</b> 하단의 빈들은 뷰를 생성하는 Thymeleaf 설정입니다.
 
-`<mvc:annotation-driven />`은 디스패처가 적절한 컨트롤러를 찾아서 실행할 수 있도록 핸들러 매핑인 `RequestMappingHandlerMapping`과 `RequestMappingHandlerAdapter` 빈을 자동으로 등록시킵니다. 이외에는 스프링 MVC에서 기본적으로 필요한 빈들을 등록하는데 자세한 것은 [여기](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-servlet-special-bean-types)를 참조하기 바랍니다.
+`<mvc:annotation-driven />`은 디스패처가 적절한 컨트롤러를 찾아서 실행할 수 있도록 핸들러 매핑인 `RequestMappingHandlerMapping`과 `RequestMappingHandlerAdapter` 빈을 자동으로 등록시킵니다. 이외에도 스프링 MVC에서 기본적으로 필요한 빈들을 등록하는데 자세한 것은 [여기](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-servlet-special-bean-types)를 참조하기 바랍니다.
 
 이렇게 `DispatcherServlet`만 등록해도 컨트롤러까지 테스트해볼 수 있습니다. 아래와 같이 간단한 컨트롤러를 작성해보면 웹 애플리케이션 컨텍스트의 동작을 확인할 수 있습니다. 
 
