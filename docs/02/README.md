@@ -9,7 +9,7 @@ STS 4부터는 스프링 부트가 아닌 Spring MVC 프로젝트를 간단히 �
 
 `web.xml`은 톰캣에서 제공하는 파일을 복사해서(XML 문서구조만 남기고 내용은 삭제) `WEB-INF` 아래에 넣으면 되겠습니다.
 
-톰캣은 STS의 런타임 서버로 등록해서 사용합니다. Window > Show View > Server 에서 Apache Tomcat v9.0을 선택하면 되겠습니다. 프로젝트는 원래 톰캣이 설치된 디렉토리에 프로젝트가 빌드되서 배포되는 것이 아니라 디폴트 위치로 워크스페이스 메타데이터에 생성됩니다. 이 위치는 서버 속성 정보에서, 아래 그림의 Server Locations에 나타나 있습니다.
+톰캣은 STS의 런타임 서버로 등록해서 사용합니다. Window > Show View > Server 에서 Apache Tomcat v9.0을 선택하면 되겠습니다. 프로젝트는 원래 톰캣이 설치된 디렉토리에 빌드되서 배포되는 것이 아니라 디폴트 위치로 워크스페이스 메타데이터에 생성됩니다. 이 위치는 서버 속성 정보에서, 아래 그림의 Server Locations에 나타나 있습니다.
 
 ```
 workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0

@@ -28,7 +28,7 @@
 
 같은 맥락으로 스프링 MVC에서도 웹 애플리케이션의 프리젠테이션 레이어를 담당하는 빈(bean)을 관리하는 `WebApplicationContext`을 구성하는데, 그것을 해주는 것이 `DispatcherServlet`입니다. 즉 이 서블릿을 등록하면 주어진 빈 설정에 따라 `WebApplicationContext`을 생성합니다. 
 
-빈 설정은 `contextConfigLocation`에 있는 xml 파일을 로드하면서 이루어집니다. 그래서 `web.xml`에서 디스패처 서블릿은 아래와 같이 지정합니다.
+빈 설정은 `contextConfigLocation`에 있는 xml 파일을 로드하면서 이루어집니다. 그래서 `web.xml`에서 디스패처 서블릿을 아래와 같이 지정합니다.
 
 ```
 <servlet>
@@ -46,7 +46,7 @@
         <url-pattern>/*</url-pattern>
 </servlet-mapping>
 ```
-`servlet-context.xml`이 바로 빈 설정 파일에 해당합니다. 이름이 "서블릿 컨텍스트"라는 것은 서블릿 객체인 `ServletContext`의 기능에 해당하기 때문입니다. 디스패처의 가장 중요한 역할은 HTTP 요청을 받아서 적절한 컨트롤러에 매핑시켜주는 "핸들러 매핑" 기능입니다. 
+`servlet-context.xml`이 바로 빈 설정 파일에 해당합니다. 이름이 "서블릿 컨텍스트"라는 것은 서블릿 객체인 `ServletContext`의 역할을 하기 때문입니다. 디스패처는 HTTP 요청을 받아서 적절한 컨트롤러에 매핑시켜주는 "핸들러 매핑" 기능과 결과를 브라우저에서 볼 수 있도록 가공하는 "뷰 리졸버"를 실행합니다.
 
 디스패처 서블릿은 `<servlet-mapping>`의 `<url-pattern>`에 설정된 요청 패턴을 처리합니다. 서블릿 스펙에서는 이러한 URL 패턴 매칭에 대해서 아래와 같은 규칙을 정하고 있습니다.  
 
