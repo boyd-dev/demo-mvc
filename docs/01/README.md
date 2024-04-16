@@ -4,6 +4,12 @@
 
 >Jakarta Servlet defines a server-side API for handling HTTP requests and responses.
 
+서블릿은 서블릿 "컨테이너(서버)"에서 실행되는 프로그램이라고 할 수 있습니다. 사용자의 HTTP 요청을 받아서 동적인 컨텐츠를 만들어 HTTP 응답으로 리턴하는 프로그램으로 생각하면 될 것 같습니다. 스펙에 의해 특별한 경우가 아니라면 서블릿 컨테이너는 서블릿 인스턴스를 하나만 생성해야 하기 때문에 서블릿은 thread-safe 하지 않습니다. 
+
+>For a servlet not hosted in a distributed environment (the default), the servlet container must use only one instance per servlet declaration
+
+그런데 서블릿만으로 웹 애플리케이션을 구현하는 경우는 사실상 없고 앞으로 다룰 스프링 MVC 패턴을 사용하는 경우가 대부분입니다.
+
 ## JSP(Java Server Page) 
 서블릿이 자바 웹 기술의 중심이긴 하지만 실용적인 "다이나믹" 웹 애플리케이션을 만들기에는 많은 어려움이 있었습니다. JSP는 HTML과 같이 섞어서 작성되기 때문에 개발 측면에서 훨씬 접근하기 수월합니다. 즉 JSP 소스파일은 HTML과 같은 정적인 부분과 컴파일 지시어, 서버측에서 동적으로 생성되는 부분(스크립트릿)으로 구성됩니다. 하지만 JSP도 결국 서블릿으로 컴파일되기 때문에 서블릿이라고 볼 수 있겠습니다. JSP도 개별 [스펙](https://jakarta.ee/specifications/pages/)으로 진행되고 있습니다.
 
@@ -23,6 +29,7 @@
 
 >Also, except for the case where static resources are packaged in JAR files, any requests from the client to access the resources in WEB-INF/ directory must be returned with a SC_NOT_FOUND(404) response
 
+따라서 공개된 정적인 리소스들을 WEB-INF 밖에 위치하는 것이 일반적이고 그 외의 동적인 리소스들(클래스, JSP 등등)은 WEB-INF에 두는 것이 좋습니다.
 
 ## Spring MVC
 웹 애플리케이션을 개발할 때 가장 많이 사용되는 패턴으로 MVC(Mode-View-Controller)가 있는데, 스프링을 많이 사용하게 되면서 스프링 MVC가 사실상 자바 웹의 MVC가 되어 버렸습니다. 

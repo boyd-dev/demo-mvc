@@ -64,7 +64,7 @@ and the path info is null.
 
 이 예제에서는 "/"로 설정하여 모든 요청이 디스패처 서블릿으로 전달되도록 하겠습니다. 그런데 "/"은 원래 톰캣이 제공하는 디폴트 서블릿으로 매핑되어 있는데 이것을 디스패처 서블릿으로 대체하는 셈이 되기 때문에 원래 디폴트 서블릿이 제공하는 정적인 리소스 요청은 실패하게 됩니다. 그래서 정적인 리소스들에 대한 매핑은 스프링 MVC가 제공하는 `<mvc:resources mapping>`을 이용하기로 하겠습니다.
 
-`servlet-context.xml`의 내용은 아래와 같습니다. 통상적인 xml 방식으로 빈을 정의할 때와 동일하게 작성하면 되겠습니다.
+`servlet-context.xml`의 내용은 아래와 같습니다. xml 방식으로 빈을 정의할 때와 동일하게 작성하면 되겠습니다.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -136,7 +136,7 @@ public class HomeController {
 	}
 }
 ```
-이 컨트롤러는 단순히 서버 시간을 model에 넣고 리턴합니다. 스프링 MVC에서 뷰를 담당하는 인터페이스를 "뷰 리졸버(View resolver)"라고 하는데 예제에서는 Thymeleaf를 사용합니다. `org.thymeleaf.spring5.view.ThymeleafViewResolver`는 스프링의 `org.springframework.web.servlet.ViewResolver` 인터페이스를 구현하고 있습니다. 리턴되는 "home"이라는 문자열을 받아서 "/WEB-INF/views/home.html"을 만듭니다. 최종적으로 톰캣은 이 HTML 파일을 응답으로 전송합니다.
+이 컨트롤러는 단순히 서버 시간을 model에 넣고 리턴합니다. 스프링 MVC에서 뷰를 담당하는 인터페이스를 "뷰 리졸버(View resolver)"라고 하는데 예제에서는 Thymeleaf를 사용합니다. `org.thymeleaf.spring5.view.ThymeleafViewResolver`는 스프링의 `org.springframework.web.servlet.ViewResolver` 인터페이스를 구현하고 있습니다. 컨트롤러에서 리턴되는 "home"이라는 문자열을 받아서 "/WEB-INF/views/home.html"을 만듭니다. 최종적으로 톰캣은 이 HTML 파일을 응답으로 전송하면 브라우저에 표시됩니다.
 
 
 
