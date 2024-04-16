@@ -11,7 +11,7 @@
 그런데 서블릿만으로 웹 애플리케이션을 구현하는 경우는 사실상 없고 앞으로 다룰 스프링 MVC 패턴을 사용하는 경우가 대부분입니다.
 
 ## JSP(Java Server Page) 
-서블릿이 자바 웹 기술의 중심이긴 하지만 실용적인 "다이나믹" 웹 애플리케이션을 만들기에는 많은 어려움이 있었습니다. JSP는 HTML과 같이 섞어서 작성되기 때문에 개발 측면에서 훨씬 접근하기 수월합니다. 즉 JSP 소스파일은 HTML과 같은 정적인 부분과 컴파일 지시어, 서버측에서 동적으로 생성되는 부분(스크립트릿)으로 구성됩니다. 하지만 JSP도 결국 서블릿으로 컴파일되기 때문에 서블릿이라고 볼 수 있겠습니다. JSP도 개별 [스펙](https://jakarta.ee/specifications/pages/)으로 진행되고 있습니다.
+서블릿이 자바 웹 기술의 중심이긴 하지만 실용적인 "다이나믹" 웹 애플리케이션을 만들기에는 많은 어려움이 있었습니다. JSP는 HTML과 같이 섞어서 작성되기 때문에 개발 측면에서 훨씬 접근하기 수월합니다. 즉 JSP 소스파일은 HTML과 같은 정적인 부분과 컴파일 지시어, 서버측에서 동적으로 생성되는 부분(스크립트릿)으로 구성되어 작성됩니다. 하지만 JSP도 결국 서블릿으로 컴파일되기 때문에 서블릿이라고 볼 수 있겠습니다. JSP도 개별 [스펙](https://jakarta.ee/specifications/pages/)으로 진행되고 있습니다.
 
 >Jakarta Pages defines a template engine for web applications that supports mixing of textual content (including HTML and XML) with custom tags, expression language, and embedded Java code, that gets compiled into a Jakarta Servlet.
 
