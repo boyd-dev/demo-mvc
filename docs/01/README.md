@@ -1,6 +1,6 @@
 ## Servlet
 대부분의 시스템들은 웹 기반의 애플리케이션입니다. 자바에서는 "서블릿(Servlet)"이라는 스펙을 통해 웹 애플리케이션 개발 기술을 제공해왔습니다.
-현재 서블릿 스펙은 버전 [6](https://jakarta.ee/specifications/servlet/6.0/)까지 나왔으며, 크게 보면 "Jakarta EE Platform"이라는 전체 스펙에 포함되는 개별 스펙이라고 할 수 있습니다.
+현재 서블릿 스펙은 버전 [6](https://jakarta.ee/specifications/servlet/6.0/)까지 나왔으며, 크게 보면 "Jakarta EE Platform"이라는 전체 스펙 하위의 개별 스펙이라고 할 수 있습니다.
 
 >Jakarta Servlet defines a server-side API for handling HTTP requests and responses.
 
