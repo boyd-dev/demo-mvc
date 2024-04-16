@@ -23,7 +23,7 @@ STS의 로그가 충분하지 않은 경우 이 위치에 있는 로그를 참�
 ![fig04.png](../img/fig04.png)
 
 ## build.gradle
-의존성 라이브러리는 그레이들로 설정합니다. war 파일을 만들기 위해 war 플러그인을 추가합니다. 스프링 MVC를 위해서는 `org.springframework:spring-webmvc`만 추가하면 나머지는 transitive 하게 들어갑니다. 서블릿을 직접 사용해보기 위해 `javax.servlet:javax.servlet-api`도 추가합니다. `Thymeleaf`는 처리 결과를 HTML에 보여주기 위해 추가되었습니다.
+의존성 라이브러리는 그레이들로 설정합니다. war 파일을 만들기 위해 war 플러그인을 추가합니다. 스프링 MVC를 위해서는 `org.springframework:spring-webmvc`만 추가하면 나머지는 transitive 하게 들어갑니다. 서블릿을 직접 사용해보기 위해 `javax.servlet:javax.servlet-api`도 추가합니다. `Thymeleaf`는 처리 결과를 HTML에 보여주기 위한 "뷰 처리기"로 사용됩니다.
 
 ```
 plugins {

@@ -28,7 +28,7 @@
 
 같은 맥락으로 스프링 MVC에서도 웹 애플리케이션의 프리젠테이션 레이어를 담당하는 빈(bean)을 관리하는 `WebApplicationContext`을 구성하는데, 그것을 해주는 것이 `DispatcherServlet`입니다. 즉 이 서블릿을 등록하면 주어진 빈 설정에 따라 `WebApplicationContext`을 생성합니다. 
 
-빈 설정은 `contextConfigLocation`에 있는 xml 파일을 로드하면서 이루어집니다. 그래서 `web.xml`에서 디스패처 서블릿을 아래와 같이 지정합니다.
+빈 설정은 `contextConfigLocation`에 있는 xml 파일을 로드하면서 이루어집니다. `web.xml`에서 디스패처 서블릿을 아래와 같이 지정합니다.
 
 ```
 <servlet>
@@ -64,7 +64,7 @@ and the path info is null.
 
 이 예제에서는 "/"로 설정하여 모든 요청이 디스패처 서블릿으로 전달되도록 하겠습니다. 그런데 "/"은 원래 톰캣이 제공하는 디폴트 서블릿으로 매핑되어 있는데 이것을 디스패처 서블릿으로 대체하는 셈이 되기 때문에 원래 디폴트 서블릿이 제공하는 정적인 리소스 요청은 실패하게 됩니다. 그래서 정적인 리소스들에 대한 매핑은 스프링 MVC가 제공하는 `<mvc:resources mapping>`을 이용하기로 하겠습니다.
 
-`servlet-context.xml`의 내용은 아래와 같습니다. xml 방식으로 빈을 정의할 때와 동일하게 작성하면 되겠습니다.
+`servlet-context.xml`의 내용은 아래와 같습니다. 
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
