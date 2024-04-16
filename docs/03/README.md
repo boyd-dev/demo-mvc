@@ -106,6 +106,7 @@ and the path info is null.
             <ref bean="templateEngine"/>
         </property>
         <property name="order" value="1"/>
+        <property name="characterEncoding" value="UTF-8"/>
     </bean>    
 
 </beans>
