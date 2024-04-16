@@ -28,6 +28,7 @@ context-security.xml
 context-transaction.xml
 ...
 ```
+여기에 정의되는 빈들은 웹과 무관한 것들입니다. 즉 애플리케이션 컨텍스트는 프리젠테이션 레이어가 웹이 아니더라도 사용될 수 있도록 분리된 계층이라고 할 수 있습니다.
 
 
   [처음](../README.md) | [다음](../05/README.md)
