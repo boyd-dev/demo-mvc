@@ -21,7 +21,7 @@
 ```
 `ContextLoaderListener`는 전체 `ServletContext` 라이프사이클 동안 발생하는 이벤트를 감지할 수 있는 `ServletContextListener` 인터페이스를 구현하기 때문에 웹 애플리케이션이 시작되거나 종료할 때 애플리케이션 컨텍스트의 빈들을 초기화하거나 정리할 수 있습니다.  
 
-서버가 웹 애플리케이션을 시작하면 `ContextLoaderListener`는 `contextConfigLocation`에 설정된 위치에서 설정 파일들을 로드하여 빈들을 생성합니다. 설정파일은 그 역할에 따라 나누어 작성할 수 있으므로 파일 네이밍을 정해서 전달했습니다. 예를 들어 아래와 같이 여러 개의 설정 [파일](https://github.com/boyd-dev/MyNewProject/tree/master/src/main/resources/framework/spring)들이 존재할 수 있습니다.
+서버가 웹 애플리케이션을 시작하면 `ContextLoaderListener`는 `contextConfigLocation`에 설정된 위치에서 설정 파일들을 로드하여 빈들을 생성합니다. 설정 파일은 그 역할에 따라 나누어 작성할 수 있으므로 파일 네이밍을 정해서 전달했습니다. 예를 들어 아래와 같이 여러 개의 설정 [파일](https://github.com/boyd-dev/MyNewProject/tree/master/src/main/resources/framework/spring)들이 존재할 수 있습니다.
 
 ```
 context-datasource.xml
