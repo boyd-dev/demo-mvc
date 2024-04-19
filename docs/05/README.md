@@ -54,7 +54,7 @@ protected WebApplicationContext createServletApplicationContext()
 >Create a servlet application context to be provided to the DispatcherServlet.
 The returned context is delegated to Spring's DispatcherServlet(WebApplicationContext).
 
-`getServletMappings`은 `DispatcherServlet`이 처리하는 URL 패턴 매핑입니다. `CharacterEncodingFilter` 필터도 설정도 `onStartup` 메소드를 오버라이드하여 추가되었습니다.
+`getServletMappings`은 `DispatcherServlet`이 처리하는 URL 패턴 매핑입니다. `CharacterEncodingFilter` 필터도 `onStartup` 메소드를 오버라이드하여 추가되었습니다.
 
 `servlet-context.xml`을 제거하고 대체하는 클래스는 `WebConfig`라는 이름으로 만들었습니다. `@EnableWebMvc`은 `<mvc:annotation-driven/>`에 해당하는 어노테이션입니다.
 
