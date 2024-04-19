@@ -41,13 +41,17 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 ```
 `getRootConfigClasses`는 애플리케이션 컨텍스트에 해당하는 구성 클래스를 리턴하면 되고 `getServletConfigClasses`는 웹 애플리케이션 컨텍스트를 설정하는 클래스를 리턴하면 되겠습니다. 스프링 [API 문서](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/support/AbstractAnnotationConfigDispatcherServletInitializer.html)에는 이렇게 전달 받은 구성 클래스들을 사용하여 각각의 컨텍스트를 생성한다고 설명하고 있습니다.
 
->@Nullable  
+```
+@Nullable  
 protected WebApplicationContext createRootApplicationContext()  
-Create the "root" application context to be provided to the ContextLoaderListener.
+```
+>Create the "root" application context to be provided to the ContextLoaderListener.
 The returned context is delegated to ContextLoaderListener(WebApplicationContext) and will be established as the parent context for any DispatcherServlet application contexts. 
 
->protected WebApplicationContext createServletApplicationContext()  
-Create a servlet application context to be provided to the DispatcherServlet.
+```
+protected WebApplicationContext createServletApplicationContext()  
+```
+>Create a servlet application context to be provided to the DispatcherServlet.
 The returned context is delegated to Spring's DispatcherServlet(WebApplicationContext).
 
 `getServletMappings`은 `DispatcherServlet`이 처리하는 URL 패턴 매핑입니다. `CharacterEncodingFilter` 필터도 설정도 `onStartup` 메소드를 오버라이드하여 추가되었습니다.
