@@ -46,9 +46,7 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 
 ## 핸들러 메소드의 인자들  
 
-디스패처 서블릿이 `RequestMappingHandlerMapping`으로 메소드를 찾으면 다시 `RequestMappingHandlerAdapter`에게 요청을 전달해서 실제 컨트롤러의 메소드를 실행합니다. 그런데 `RequestMappingHandlerAdapter`를 거치면서 컨트롤러의 메소드로 전달되는 인자들이 만들어집니다. 인자들 안에는 HTTP 요청의 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다.
-
-컨트롤러 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
+디스패처 서블릿이 `RequestMappingHandlerMapping`으로 메소드를 찾으면 다시 `RequestMappingHandlerAdapter`에게 요청을 전달해서 실제 컨트롤러의 메소드를 실행합니다. 그런데 `RequestMappingHandlerAdapter`를 거치면서 컨트롤러의 메소드로 전달되는 인자들이 만들어집니다. 인자들 안에는 HTTP 요청의 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 컨트롤러 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
 
 
 
