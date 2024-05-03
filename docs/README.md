@@ -26,6 +26,7 @@
 3. [스프링 MVC 설정](03/README.md)
 4. [애플리케이션 컨텍스트](04/README.md)
 5. [WebApplicationInitializer](05/README.md)
+6. [요청처리](06/README.md)
 
 참고  
 [Spring MVC docs 5.3.32](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc)
