@@ -35,7 +35,7 @@ public class MyController implements Controller {
 
 ## @RequestMapping
 
-`RequestMappingHandlerMapping`은 요청 URL에 따라 실행할 메소드를 결정합니다. 속성으로 HTTP method를 지정할 수 있습니다. 지정하지 않는 경우는 모든 HTTP method(GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE, TRACE)에 대해 매핑됩니다.
+`RequestMappingHandlerMapping`은 요청 URL에 따라 실행할 메소드를 결정합니다. 메소드에 `@RequestMapping` 어노테이션을 추가합니다. 속성으로 HTTP method를 지정할 수 있습니다. 지정하지 않는 경우는 모든 HTTP method(GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE, TRACE)에 대해 매핑됩니다.
 
 ```
 @RequestMapping(value = {"/home"}, method = {RequestMethod.GET, RequestMethod.POST})
@@ -46,10 +46,13 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 
 요청 URL 패턴은 두 가지 형태가 있습니다. 
 
+- PathPattern
+- AntPathMatcher
+
 
 ## 핸들러 메소드의 인자들  
 
-디스패처 서블릿이 `RequestMappingHandlerMapping`은 메소드를 찾는 역할까지만 하고 실제 실행은 `RequestMappingHandlerAdapter`가 수행합니다. `RequestMappingHandlerAdapter`를 거치면서 컨트롤러의 메소드로 전달되는 인자들이 만들어집니다. 인자들 안에는 HTTP 요청의 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 컨트롤러 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
+디스패처 서블릿이 `RequestMappingHandlerMapping`은 메소드를 찾는 역할까지만 하고 실제 실행은 `RequestMappingHandlerAdapter`가 수행합니다. `RequestMappingHandlerAdapter`를 거치면서 메소드로 전달되는 인자들이 만들어집니다. 인자들 안에는 HTTP 요청의 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
 
 
 
