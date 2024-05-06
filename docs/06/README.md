@@ -1,5 +1,5 @@
 ## 요청 처리
-여기서는 HTTP 요청을 처리하는 컨트롤러 매핑과 메소드 인자들에 대해 알아보겠습니다.  
+이번 문서에는 HTTP 요청을 처리하는 컨트롤러 매핑과 메소드 인자들에 대해 알아보겠습니다.  
 
 [스프링 MVC](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc)는 웹 애플리케이션 프레임워크로 "프론트 컨트롤러 패턴"을 사용합니다. 디스패처 서블릿이 바로 그 역할을 하고 있는데 모든 요청은 디스패처 서블릿을 거쳐서 URL에 매핑된 "핸들러"로 전달됩니다. 여기서 "핸들러"는 보통 컨트롤러의 메소드가 됩니다.
 
@@ -18,7 +18,7 @@ public class MyController implements Controller {
 }
 ```
 
-하지만 스프링 2.5부터 `@Controller`와 `@RequestMapping` 어노테이션이 도입되면서 하나의 컨트롤러가 HTTP요청에 따라 매핑된 메소드를 실행하는 것이 가능해졌습니다(과거에는 이것을 `MultiActionController`로 구현했습니다).  
+하지만 스프링 2.5부터 `@Controller`와 `@RequestMapping` 어노테이션이 도입되면서 하나의 컨트롤러가 HTTP요청에 따라 매핑된 메소드를 실행하는 것이 가능해졌습니다(오래전에는 이것을 `MultiActionController`로 구현했습니다).  
 
 디스패처 서블릿이 HTTP 요청을 어느 메소드로 보내서 처리할지를 결정하려면 중간에 `HandlerMapping`과 `HandlerAdaptor`라는 것이 필요합니다. 원래는 이러한 `HandlerMapping`, `HandlerAdaptor` 인터페이스를 구현한 빈들을 설정해주는 작업이 필요했지만 스프링 3.0부터는 `<mvc:annotation-driven />` 또는 `@EnableWebMvc`으로 설정되는 "MVC 간소화" 기능으로 자동화되었습니다. 설정하지 않으면 [디폴트 빈](https://github.com/spring-projects/spring-framework/blob/5.3.x/spring-webmvc/src/main/resources/org/springframework/web/servlet/DispatcherServlet.properties)들이 동작하게 됩니다. 
 
@@ -56,14 +56,14 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 
 ## 핸들러 메소드의 인자들  
 
-디스패처 서블릿이 `RequestMappingHandlerMapping`은 메소드를 찾는 역할까지만 하고 실제 실행은 `RequestMappingHandlerAdapter`가 수행합니다. `RequestMappingHandlerAdapter`를 거치면서 메소드로 전달되는 인자들이 만들어지는데, 화면에서 전달된 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
+디스패처 서블릿은 `RequestMappingHandlerMapping`을 사용하여 메소드를 찾고나서 실행은 `RequestMappingHandlerAdapter`에 위임합니다. `RequestMappingHandlerAdapter`를 거치면서 메소드로 전달되는 인자들이 만들어지는데, 화면에서 전달된 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
 
-컨트롤러 메소드가 받는 주요 인자들은 아래와 같습니다(임의 선택).
+컨트롤러 메소드가 받는 주요 인자들은 아래와 같습니다.
 
 - WebRequest, NativeWebRequest  
   >Generic interface for a web request. Mainly intended for generic web request interceptors, giving them access to general request metadata, not for actual handling of the request.
 
-  서블릿 컨테이너가 생성하는 request가 아닌 request. 보통은 HttpServletRequest를 사용하기 때문에 직접 쓸 일이 없습니다.
+  서블릿 컨테이너가 생성하는 request가 아닌 request입니다. 보통은 서블릿 컨테이너가 재생성하는 HttpServletRequest를 사용하기 때문에 직접 쓸 일이 없습니다.
 
 - HttpServletRequest, HttpServletResponse, MultipartHttpServletRequest, HttpSession  
 서블릿에서 사용되는 request, response, session에 해당하는 것으로 HttpSession은 request.getSession(true)와 마찬가지로 세션을 <b>항상 생성</b>합니다.  
@@ -81,7 +81,7 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 - PushBuilder  
 
 - Principal  
-현재 인증된 사용자 정보를 가진 객체. 예를 들어 스프링 시큐리티의 경우 ` org.springframework.security.core.Authentication` 타입이 전달됩니다.
+현재 로그인 등을 통해 인증된 사용자 정보를 가진 객체로 예를 들어 스프링 시큐리티의 경우 ` org.springframework.security.core.Authentication` 타입이 전달됩니다.
 
 - Locale, TimeZone, ZoneId  
 요청의 로케일, 시간대
@@ -97,7 +97,7 @@ URL경로 형태로 전달되는 템플릿 파라미터를 받을 때 사용(주
   ```
 
 - @RequestParam  
-가장 간단하게 사용할 수 있는 어노테이션으로 form 데이터(multipart/form-data 포함)나 querystring으로 넘어오는 값들을 받을 때 사용합니다. 항목이 많은 경우는 `@RequestBody`나 `@ModelAttribute`를 사용합니다.
+가장 간단하게 사용할 수 있는 어노테이션으로 폼데이터(multipart/form-data 포함)나 querystring으로 넘어오는 값들을 받을 때 사용합니다. 항목이 많은 경우는 `@RequestBody`나 `@ModelAttribute`를 사용합니다.
   ```
   @RequestParam(name = "phoneNumber", required = false) String v,
   ```
@@ -116,7 +116,7 @@ request 헤더에 있는 값이 필요할 때 사용.
   ```
 
 - @RequestBody  
-request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송되는 폼데이터를 받을 수도 있지만 보통은 `Content-type: application/json`인 경우에 사용하게 됩니다. json 데이터의 경우는 해당 필드를 가진 DTO 객체에 자동으로 값을 넣어주게 됩니다.
+HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합니다. `POST`로 전송되는 폼데이터를 받을 수도 있지만 보통은 `Content-type: application/json`인 경우에 사용하게 됩니다. json 데이터의 경우는 해당 필드를 가진 DTO 객체에 자동으로 값을 넣어주게 됩니다.
   ```
   {"name": "Patti"}
 
@@ -138,7 +138,7 @@ request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송�
   >HttpEntity is more or less identical to using @RequestBody but is based on a container object that exposes request headers and body. 
 
 - @RequestPart  
-`multipart/form-data`를 받을때 사용. `multipart/form-data`로 전달되는 request는 다음과 같이 하나 이상의 "part"로 구분됩니다. 예를 들어 아래와 같은 폼 데이터를 전송한 경우
+`multipart/form-data`를 받을때 사용할 수 있습니다. `multipart/form-data`로 전달되는 request는 다음과 같이 하나 이상의 "part"로 구분됩니다. 예를 들어 아래와 같은 폼 데이터를 전송한 경우
   ```
   <form method="post" th:action="@{'/upload'}" enctype="multipart/form-data">
         <input type="text" name="name" value="Tony"/>
@@ -148,7 +148,7 @@ request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송�
         <input type="button" onclick="fn_submit()" value="Submit"/>        
   </form>
   ```
-  실제 request의 body는 다음과 같이 표시됩니다. 
+  실제 request의 바디는 다음과 같이 표시됩니다. 
   ```
   ------WebKitFormBoundaryQnZA9QsTSge8Wuki
   Content-Disposition: form-data; name="name"
@@ -165,7 +165,7 @@ request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송�
   @RequestPart(name = "name", required = false) String name,
   @RequestPart(name = "upfile", required = false) MultipartFile file
   ```
-  위의 경우는 파일과 함께 폼 데이터를 `String`으로 단순하게 받았지만 보통의 경우는 json으로 보내면 json의 각 필드 값을 DTO 객체에 자동으로 넣어주기 때문에 json과 파일을 같이 전송하는 경우 유용하게 사용할 수 있습니다.  
+  위의 경우는 파일과 함께 폼데이터를(key=value 형태) `String`으로 단순하게 받았지만 보통은 json으로 보내면 json의 각 필드 값을 DTO 객체에 자동으로 넣어주기 때문에 json과 파일을 같이 전송하는 경우 유용하게 사용할 수 있습니다.  
 
   `@RequestPart`는 서블릿 3.0부터 도입된 `@MultipartConfig` 설정이 선행되어야 정상적으로 동작합니다. `web.xml`이나 `AbstractAnnotationConfigDispatcherServletInitializer` 클래스에 다음을 추가해야 합니다.
   ```
@@ -181,7 +181,7 @@ request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송�
 		 registration.setMultipartConfig(new MultipartConfigElement(null, 2097152L, 4194304L, 1024*1024));
   }
   ```
-  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다. 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 같이 설정합니다.
+  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다. 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 함께 설정할 수 있습니다(`MultipartHttpServletRequest`를 직접 처리하는 경우).
 
   ```
   @Bean
@@ -192,7 +192,7 @@ request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송�
 		return multipartResolover;
   }
   ```
-  앞서 말한 것처럼 `MultipartHttpServletRequest`을 직접 처리하기 위해 `commons-fileupload` 기반의 `multipartResolver`를 사용하는 방법도 있습니다. 이 경우에는 `@MultipartConfig` 설정이 필요없습니다.
+  앞서 말한 것처럼 `MultipartHttpServletRequest`을 직접 처리하는 또 다른 방법은 `commons-fileupload` 기반의 `multipartResolver`를 설정할 수도 있습니다. 이 경우에는 `@MultipartConfig` 설정이 필요없습니다.
 
 - Map, Model, ModelMap
 
