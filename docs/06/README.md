@@ -166,12 +166,13 @@ request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송�
   @RequestPart(name = "upfile", required = false) MultipartFile file
   ```
   위의 경우는 파일과 함께 폼 데이터를 `String`으로 단순하게 받았지만 보통의 경우는 json으로 보내면 json의 각 필드 값을 DTO 객체에 자동으로 넣어주기 때문에 json과 파일을 같이 전송하는 경우 유용하게 사용할 수 있습니다.  
+
   `@RequestPart`는 서블릿 3.0부터 도입된 `@MultipartConfig` 설정이 선행되어야 정상적으로 동작합니다. `web.xml`이나 `AbstractAnnotationConfigDispatcherServletInitializer` 클래스에 다음을 추가해야 합니다.
   ```
   web.xml
   <multipart-config>
-			<max-file-size>2097152</max-file-size>
-			<max-request-size>4194304</max-request-size>
+	   <max-file-size>2097152</max-file-size>
+	   <max-request-size>4194304</max-request-size>
   </multipart-config>
 
   AbstractAnnotationConfigDispatcherServletInitializer
@@ -180,7 +181,7 @@ request 바디로 전달되는 데이터를 받을 때 사용. `POST`로 전송�
 		 registration.setMultipartConfig(new MultipartConfigElement(null, 2097152L, 4194304L, 1024*1024));
   }
   ```
-  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다. 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 `multipartResolver`인 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 같이 설정합니다.
+  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다. 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 같이 설정합니다.
 
   ```
   @Bean
