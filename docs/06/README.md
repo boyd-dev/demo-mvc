@@ -38,7 +38,7 @@ public class MyController implements Controller {
 `RequestMappingHandlerMapping`은 디폴트로 적용되는 핸들러 매핑 구현체입니다. `@RequestMapping` 어노테이션을 사용하면 `RequestMappingHandlerMapping`에 의해 실행할 메소드를 결정합니다. 속성으로 경로 `path`와 HTTP `method`를 지정할 수 있습니다. `method`를 지정하지 않으면 모든 HTTP method(GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE, TRACE)에 대해 매핑됩니다.
 
 ```
-@RequestMapping(value = {"/home"}, method = {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(path = {"/home"}, method = {RequestMethod.GET, RequestMethod.POST})
 ```
 HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할 수 있습니다.  
 
@@ -54,9 +54,9 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 - AntPathMatcher
 
 
-## 핸들러 메소드의 인자들  
+## 컨트롤러 메소드의 인자들  
 
-디스패처 서블릿은 `RequestMappingHandlerMapping`을 사용하여 메소드를 찾고나서 실행은 `RequestMappingHandlerAdapter`에 위임합니다. `RequestMappingHandlerAdapter`를 거치면서 메소드로 전달되는 인자들이 만들어지는데, 화면에서 전달된 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
+디스패처 서블릿은 `RequestMappingHandlerMapping`을 사용하여 메소드를 찾고 실행은 `RequestMappingHandlerAdapter`에 위임합니다. `RequestMappingHandlerAdapter`를 거치면서 메소드로 전달되는 인자들이 만들어지는데, 화면에서 전달된 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
 
 컨트롤러 메소드가 받는 주요 인자들은 아래와 같습니다.
 
@@ -81,7 +81,7 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 - PushBuilder  
 
 - Principal  
-현재 로그인 등을 통해 인증된 사용자 정보를 가진 객체로 예를 들어 스프링 시큐리티의 경우 ` org.springframework.security.core.Authentication` 타입이 전달됩니다.
+현재 로그인 등을 통해 인증된 사용자 정보를 가진 객체로 예를 들어 스프링 시큐리티의 경우 `org.springframework.security.core.Authentication` 타입이 전달됩니다.
 
 - Locale, TimeZone, ZoneId  
 요청의 로케일, 시간대
@@ -97,7 +97,7 @@ URL경로 형태로 전달되는 템플릿 파라미터를 받을 때 사용(주
   ```
 
 - @RequestParam  
-가장 간단하게 사용할 수 있는 어노테이션으로 폼데이터(multipart/form-data 포함)나 querystring으로 넘어오는 값들을 받을 때 사용합니다. 항목이 많은 경우는 `@RequestBody`나 `@ModelAttribute`를 사용합니다.
+가장 간단하게 사용할 수 있는 어노테이션으로 폼데이터(multipart/form-data 포함)나 querystring으로 넘어오는 값들을 받을 때 사용합니다. 항목이 많은 경우는 `@RequestBody`나 `@ModelAttribute`를 사용하는 것이 좋습니다.
   ```
   @RequestParam(name = "phoneNumber", required = false) String v,
   ```
@@ -116,7 +116,7 @@ request 헤더에 있는 값이 필요할 때 사용.
   ```
 
 - @RequestBody  
-HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합니다. `POST`로 전송되는 폼데이터를 받을 수도 있지만 보통은 `Content-type: application/json`인 경우에 사용하게 됩니다. json 데이터의 경우는 해당 필드를 가진 DTO 객체에 자동으로 값을 넣어주게 됩니다.
+HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합니다. `POST`로 전송되는 폼데이터를 받을 수도 있지만 보통은 json 데이터, `Content-type: application/json`인 경우에 사용하게 됩니다. json 데이터의 경우는 해당 필드를 가진 DTO 객체에 자동으로 값을 넣어주게 됩니다.
   ```
   {"name": "Patti"}
 
@@ -138,7 +138,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
   >HttpEntity is more or less identical to using @RequestBody but is based on a container object that exposes request headers and body. 
 
 - @RequestPart  
-`multipart/form-data`를 받을때 사용할 수 있습니다. `multipart/form-data`로 전달되는 request는 다음과 같이 하나 이상의 "part"로 구분됩니다. 예를 들어 아래와 같은 폼 데이터를 전송한 경우
+`multipart/form-data`를 받을 때 사용할 수 있습니다. `multipart/form-data`로 전달되는 request는 다음과 같이 하나 이상의 "part"로 구분됩니다. 예를 들어 아래와 같은 폼 데이터를 전송한 경우
   ```
   <form method="post" th:action="@{'/upload'}" enctype="multipart/form-data">
         <input type="text" name="name" value="Tony"/>
@@ -192,7 +192,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
 		return multipartResolover;
   }
   ```
-  앞서 말한 것처럼 `MultipartHttpServletRequest`을 직접 처리하는 또 다른 방법은 `commons-fileupload` 기반의 `multipartResolver`를 설정하는 것입니다. 이 경우에는 `@MultipartConfig` 설정이 필요없습니다.
+  앞서 말한 것처럼 `commons-fileupload` 기반의 `multipartResolver`를 설정할 수도 있습니다. 이 경우에는 `@MultipartConfig` 설정이 필요없습니다.
 
 - Map, Model, ModelMap
 
