@@ -192,7 +192,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
 		return multipartResolover;
   }
   ```
-  앞서 말한 것처럼 `MultipartHttpServletRequest`을 직접 처리하는 또 다른 방법은 `commons-fileupload` 기반의 `multipartResolver`를 설정할 수도 있습니다. 이 경우에는 `@MultipartConfig` 설정이 필요없습니다.
+  앞서 말한 것처럼 `MultipartHttpServletRequest`을 직접 처리하는 또 다른 방법은 `commons-fileupload` 기반의 `multipartResolver`를 설정하는 것입니다. 이 경우에는 `@MultipartConfig` 설정이 필요없습니다.
 
 - Map, Model, ModelMap
 
