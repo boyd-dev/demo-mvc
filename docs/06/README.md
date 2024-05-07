@@ -198,10 +198,10 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
   뷰 페이지로 리턴하는 값들을 저장하는 객체
 
 - RedirectAttributes  
-redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다. 컨트롤러의 메소드가 redirection을 하면 자신이 만든 model의 속성들이 querystring으로 전달되는데 이렇게 되면 URL상에 그대로 노출됩니다. RedirectAttributes의 `addFlashAttribute`를 사용하면 일시적으로 저장된 속성들을 redirection 메소드로 전달해줄 수 있습니다(대신에 디폴트 model의 속성들은 전달되지 않습니다).
+redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다. 컨트롤러의 메소드가 redirection을 하면 현재 만들어진 model의 속성들이 querystring으로 전달되는데 이렇게 되면 URL상에 그대로 노출됩니다. RedirectAttributes의 `addFlashAttribute`를 사용하면 일시적으로 저장된 속성들을 redirection 메소드로 전달해줄 수 있습니다(대신에 디폴트 model의 속성들은 전달되지 않습니다).
 
 - @ModelAttribute  
-가장 많이 사용되는 메소드 인자 어노테이션입니다. 화면으로부터 폼데이터를 받아서 적절한 데이터 바인딩을 거쳐 객체를 생성합니다. 뷰에서는 모델의 속성들을 접근하는 용도로 사용됩니다. 공식 문서의 설명을 그대로 옮겨보겠습니다.  
+가장 많이 사용되는 메소드 인자 어노테이션입니다. 화면으로부터 폼데이터를 받아서 적절한 데이터 바인딩을 거쳐 객체를 생성합니다. 동시에 뷰에서는 모델의 속성들에 접근하는 용도로 사용됩니다. 공식 문서의 설명을 그대로 옮겨보겠습니다.  
   >You can use the @ModelAttribute annotation on a method argument to access an attribute from the model or have it be instantiated if not present. The model attribute is also overlain with values from HTTP Servlet request parameters whose names match to field names. This is referred to as data binding, and it saves you from having to deal with parsing and converting individual query parameters and form fields. 
 
    `@ModelAttribute`로 전달되는 객체는 여러 방법으로 생성될 수 있는데, 가장 일반적인 것은 폼데이터나 경로 변수(path variable)의 이름과 객체의 필드명이 같을 때 그 값이 들어간 객체를 만듭니다(과거 "command object"라고 부르던 것). 이때 객체는 setter를 가지고 있어야 합니다. 이것은 `@RequestBody`가 만들어주는 객체와 약간 다른 점인데 `@RequestBody`에서는 setter가 없어도 되기 때문입니다.  
@@ -235,10 +235,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
     // method logic...
   }
   ```  
-  폼데이터로 전달된 파라미터 `name`과 `age`의 값이 `TestDto`의 각 필드에 입력되고 `data`가 생성되어 메소드 안에서 사용할 수 있게 됩니다. `@ModelAttribute(name = "testDto")`의 `name` 속성은 뷰에서 모델의 값을 참조할 때 사용할 객체의 이름에 해당합니다.
-
-
-
+  request 파라미터 `name`과 `age`의 값이 `TestDto`의 `name`과 `age` 필드에 각각 입력되고 `TestDto` 타입의 객체인 `data`가 생성되어 메소드 안에서 사용할 수 있게 됩니다. `@ModelAttribute(name = "testDto")`의 `name` 속성은 뷰에서 모델의 값을 참조할 때 사용할 객체의 이름입니다.
 
 
 - Errors, BindingResult
