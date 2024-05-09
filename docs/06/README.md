@@ -198,7 +198,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
   뷰 페이지로 리턴하는 값들을 저장하는 객체
 
 - RedirectAttributes  
-redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다. 컨트롤러의 메소드가 redirection을 하면 현재 만들어진 model의 속성들이 querystring으로 추가되어 redirection URL로 전달되는데 이렇게 되면 값들이 그대로 노출됩니다. RedirectAttributes의 `addFlashAttribute`를 사용하면 일시적으로 저장된 속성들을 redirection 메소드의 model로 전달해줄 수 있습니다(대신에 디폴트 model의 속성들은 전달되지 않습니다).
+redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다. 컨트롤러의 메소드가 redirection을 하면 현재 만들어진 model의 속성들이 querystring으로 추가되어 redirection URL로 전달되는데 이렇게 되면 값들이 그대로 노출됩니다. RedirectAttributes의 `addFlashAttribute`를 사용하면 일시적으로 저장된 속성들을 redirection 메소드의 model로 전달해줄 수 있기 때문에 URL에 나타나지 않습니다.
 
 - @ModelAttribute  
 `@ModelAttribute`는 지금은 없어진 `AbstractFormController`와 `SimpleFormController`에 해당하는 것이라고 보면 되겠습니다. 가장 많이 사용되는 메소드 인자 어노테이션이라고 할 수 있는데, 왜냐하면 화면으로부터 폼데이터를 받아서 데이터 바인딩을 거쳐 객체를 생성해주기 때문입니다. 동시에 뷰에서는 모델의 속성들에 접근하는 용도로 사용합니다. 즉 데이터를 주고받을 때 일반적으로 사용할 수 있는 어노테이션이 되겠습니다. 공식 문서의 설명을 그대로 옮겨보겠습니다.  
