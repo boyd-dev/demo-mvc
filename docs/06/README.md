@@ -1,7 +1,7 @@
 ## 요청 처리
-이번 문서에는 HTTP 요청을 처리하는 컨트롤러 매핑과 메소드 인자들에 대해 알아보겠습니다.  
+이번 문서에서는 HTTP 요청을 처리하는 컨트롤러 매핑과 메소드 인자들에 대해 알아보겠습니다.  
 
-[스프링 MVC](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc)는 웹 애플리케이션 프레임워크로 "프론트 컨트롤러 패턴"을 사용합니다. 디스패처 서블릿이 바로 그 역할을 하고 있는데 모든 요청은 디스패처 서블릿을 거쳐서 URL에 매핑된 "핸들러"로 전달됩니다. 여기서 "핸들러"는 보통 컨트롤러의 메소드가 됩니다.
+[스프링 MVC](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc)는 웹 애플리케이션 프레임워크로 "프론트 컨트롤러 패턴"을 사용합니다. 디스패처 서블릿이 바로 그 역할을 하고 있는데 모든 요청은 디스패처 서블릿을 거쳐서 URL에 매핑된 "핸들러"로 전달됩니다. 여기서 "핸들러"는 컨트롤러의 메소드가 됩니다.
 
 >Spring MVC, as many other web frameworks, is designed around the front controller pattern where a central Servlet, the DispatcherServlet, provides a shared algorithm for request processing, while actual work is performed by configurable delegate components.
 
@@ -134,7 +134,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
   ```
 
 - HttpEntity\<B\>  
-@RequestBody와 거의 동일. request의 헤더와 바디를 모두 가진 객체.
+@RequestBody와 거의 동일. request의 헤더와 바디를 모두 가진 객체입니다.
   >HttpEntity is more or less identical to using @RequestBody but is based on a container object that exposes request headers and body. 
 
 - @RequestPart  
@@ -165,7 +165,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
   @RequestPart(name = "name", required = false) String name,
   @RequestPart(name = "upfile", required = false) MultipartFile file
   ```
-  위의 경우는 파일과 함께 폼데이터를(key=value 형태) `String`으로 단순하게 받았지만 보통은 json으로 보내면 json의 각 필드 값을 DTO 객체에 자동으로 넣어주기 때문에 json과 파일을 같이 전송하는 경우 유용하게 사용할 수 있습니다.  
+  위의 경우는 파일과 함께 폼데이터를(name=value 형태) `String`으로 단순하게 받았지만 보통은 json으로 보내면 json의 각 필드 값을 DTO 객체에 자동으로 넣어주기 때문에 json과 파일을 같이 전송할 때 유용하게 사용할 수 있습니다.  
 
   `@RequestPart`는 서블릿 3.0부터 도입된 `@MultipartConfig` 설정이 선행되어야 정상적으로 동작합니다. `web.xml`이나 `AbstractAnnotationConfigDispatcherServletInitializer` 클래스에 다음을 추가해야 합니다.
   ```
@@ -181,7 +181,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
 		 registration.setMultipartConfig(new MultipartConfigElement(null, 2097152L, 4194304L, 1024*1024));
   }
   ```
-  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다. 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 함께 설정할 수 있습니다. `StandardServletMultipartResolver`만 설정하면 `MultipartHttpServletRequest`가 처리되지 않으므로 `@MultipartConfig`와 함께 설정해야 합니다.
+  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다(예를 들어 톰캣에서 `allowCasualMultipartParsing`을 설정해도 됩니다). 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 함께 설정할 수 있습니다. `StandardServletMultipartResolver`만 설정하면 `MultipartHttpServletRequest`가 처리되지 않으므로 `@MultipartConfig`와 함께 설정해야 합니다.
 
   ```
   @Bean
@@ -201,10 +201,10 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
 redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다. 컨트롤러의 메소드가 redirection을 하면 현재 만들어진 model의 속성들이 querystring으로 전달되는데 이렇게 되면 URL상에 그대로 노출됩니다. RedirectAttributes의 `addFlashAttribute`를 사용하면 일시적으로 저장된 속성들을 redirection 메소드로 전달해줄 수 있습니다(대신에 디폴트 model의 속성들은 전달되지 않습니다).
 
 - @ModelAttribute  
-가장 많이 사용되는 메소드 인자 어노테이션입니다. 화면으로부터 폼데이터를 받아서 적절한 데이터 바인딩을 거쳐 객체를 생성합니다. 동시에 뷰에서는 모델의 속성들에 접근하는 용도로 사용됩니다. 공식 문서의 설명을 그대로 옮겨보겠습니다.  
+`@ModelAttribute`는 지금은 없어진 `AbstractFormController`와 `SimpleFormController`에 해당하는 것이라고 보면 되겠습니다. 가장 많이 사용되는 메소드 인자 어노테이션이라고 할 수 있는데, 왜냐하면 화면으로부터 폼데이터를 받아서 데이터 바인딩을 거쳐 객체를 생성해주기 때문입니다. 동시에 뷰에서는 모델의 속성들에 접근하는 용도로 사용합니다. 즉 데이터를 주고받을 때 일반적으로 사용할 수 있는 어노테이션이 되겠습니다. 공식 문서의 설명을 그대로 옮겨보겠습니다.  
   >You can use the @ModelAttribute annotation on a method argument to access an attribute from the model or have it be instantiated if not present. The model attribute is also overlain with values from HTTP Servlet request parameters whose names match to field names. This is referred to as data binding, and it saves you from having to deal with parsing and converting individual query parameters and form fields. 
 
-   `@ModelAttribute`로 전달되는 객체는 여러 방법으로 생성될 수 있는데, 가장 일반적인 것은 폼데이터나 경로 변수(path variable)의 이름과 객체의 필드명이 같을 때 그 값이 들어간 객체를 만듭니다(과거 "command object"라고 부르던 것). 이때 객체는 setter를 가지고 있어야 합니다. 이것은 `@RequestBody`가 만들어주는 객체와 약간 다른 점인데 `@RequestBody`에서는 setter가 없어도 되기 때문입니다.  
+   `@ModelAttribute`로 전달되는 객체는 여러 방법으로 생성될 수 있습니다. 가장 일반적인 것은 폼데이터나 경로 변수(path variable)의 이름과 객체의 필드명이 같을 때 그 값이 들어간 객체를 만듭니다(과거에는 이것을 "command object"라고 했습니다). 이때 객체는 setter를 가지고 있어야 합니다. 이것은 `@RequestBody`가 만들어주는 객체와 약간 다른 점인데 `@RequestBody`에서는 setter가 없어도 되기 때문입니다.  
 
   예를 들어 아래와 같이 쓰면
   ```
@@ -235,12 +235,52 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
     // method logic...
   }
   ```  
-  request 파라미터 `name`과 `age`의 값이 `TestDto`의 `name`과 `age` 필드에 각각 입력되고 `TestDto` 타입의 객체인 `data`가 생성되어 메소드 안에서 사용할 수 있게 됩니다. `@ModelAttribute(name = "testDto")`의 `name` 속성은 뷰에서 모델의 값을 참조할 때 사용할 객체의 이름입니다.
+  request 파라미터 `name`과 `age`의 값이 `TestDto`의 `name`과 `age` 필드에 입력되고 `TestDto` 타입의 객체인 `data`가 생성되어 메소드 안에서 사용할 수 있게 됩니다. `@ModelAttribute(name = "testDto")`의 `name` 속성은 뷰에서 모델의 값을 참조할 때 사용할 객체의 이름입니다.  
 
+  클래스 레벨에 `@SessionAttributes`를 사용하는 경우 `@ModelAttribute`의 속성을 `@SessionAttributes`에 저장할 수 있습니다. 이것은 일시적으로 유지되는 속성으로 한 컨트롤러 클래스 내의 다른 메소드들 사이에 어떤 값을 공유하고 싶을 때 유용합니다. 
 
-- Errors, BindingResult
+  ```
+  @Controller
+  @SessionAttributes(names = {"serverTime"})
+  public class HomeController {
 
-- @SessionAttribute
+     @RequestMapping(value = {"/home"}, method = {RequestMethod.GET, RequestMethod.POST})
+	   public String home(Model mode, ...) {
+
+        model.addAttribute("serverTime", d);
+
+        return "home";
+
+     } 
+
+     @RequestMapping(value = {"/main"}, method = {RequestMethod.GET, RequestMethod.POST})
+	   public String main(@ModelAttribute(name = "serverTime") String st) {
+        ...
+
+        return "main";
+     } 
+
+  }
+  ```
+    
+
+- Errors, BindingResult  
+뷰와 데이터를 주고 받으면서 바이딩될 때 발생하는 에러에 접근할 때 사용할 수 있는 인자입니다. 공식 문서의 설명을 옮겨보겠습니다.
+
+  >For access to errors from validation and data binding for a command object (that is, a @ModelAttribute argument) or errors from the validation of a @RequestBody or @RequestPart arguments. You must declare an Errors, or BindingResult argument immediately after the validated method argument.
+
+  BindingResult는 바인딩 객체 바로 옆에 써야 합니다. 바인딩이 되지 않은 필드와 값들은 아래와 같이 확인할 수 있습니다.
+
+  ```
+  if (bindingResult.hasErrors()) {			
+			bindingResult.getFieldErrors().stream().forEach(fe -> {				
+				 logger.info("BINDING ERROR {}={}",fe.getField(), bindingResult.getFieldValue(fe.getField()));
+			});
+	}
+  ```
+
+- @SessionAttribute  
+클래스 레벨로 사용하는 `@SessionAttributes`와 구별해야 하는 것으로 HttpSession에 있는 속성을 가져올 때 사용합니다. 클래스 레벨의 `@SessionAttributes`가 해당 컨트롤러에서만 유효하고 `@ModelAttribute`에 바인딩된다면, <b>`@SessionAttribute`</b>는 모든 컨트롤러에서 세션의 속성을 참조할 수 있습니다. 
 
 컨트롤러 메소드가 리턴하는 주요 타입은 아래와 같은 것이 있습니다.
 
