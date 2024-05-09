@@ -116,7 +116,7 @@ request 헤더에 있는 값이 필요할 때 사용.
   ```
 
 - @RequestBody  
-HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합니다. `POST`로 전송되는 폼데이터를 받을 수도 있지만 보통은 json 데이터, `Content-type: application/json`인 경우에 사용하게 됩니다. json 데이터의 경우는 해당 필드를 가진 DTO 객체에 자동으로 값을 넣어주게 됩니다.
+HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합니다. `POST`로 전송되는 폼데이터를 받을 수도 있지만(`MultiValueMap<K,V>`) 보통은 json 데이터, `Content-type: application/json`인 경우에 사용하게 됩니다. json 데이터의 경우는 해당 필드를 가진 DTO 객체에 자동으로 값을 넣어주게 됩니다.
   ```
   {"name": "Patti"}
 
@@ -282,6 +282,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
 - @SessionAttribute  
 클래스 레벨로 사용하는 `@SessionAttributes`와 구별해야 하는 것으로 HttpSession에 있는 속성을 가져올 때 사용합니다. 클래스 레벨의 `@SessionAttributes`가 해당 컨트롤러에서만 유효하고 `@ModelAttribute`에 바인딩되는 식이라면, <b>`@SessionAttribute`</b>는 모든 컨트롤러에서 세션의 속성을 참조할 수 있습니다. 
 
+## 컨트롤러 메소드의 리턴 타입
 컨트롤러 메소드가 리턴하는 주요 타입은 아래와 같은 것이 있습니다.
 
 - @ResponseBody
