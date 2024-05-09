@@ -63,7 +63,7 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 - WebRequest, NativeWebRequest  
   >Generic interface for a web request. Mainly intended for generic web request interceptors, giving them access to general request metadata, not for actual handling of the request.
 
-  서블릿 컨테이너가 생성하는 request가 아닌 request입니다. 보통은 서블릿 컨테이너가 재생성하는 HttpServletRequest를 사용하기 때문에 직접 쓸 일이 없습니다.
+  서블릿 컨테이너가 생성하지 않는 request입니다. 보통은 서블릿 컨테이너가 재생성하는 HttpServletRequest를 사용하기 때문에 직접 쓸 일이 없습니다.
 
 - HttpServletRequest, HttpServletResponse, MultipartHttpServletRequest, HttpSession  
 서블릿에서 사용되는 request, response, session에 해당하는 것으로 HttpSession은 request.getSession(true)와 마찬가지로 세션을 <b>항상 생성</b>합니다.  
@@ -181,7 +181,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
 		 registration.setMultipartConfig(new MultipartConfigElement(null, 2097152L, 4194304L, 1024*1024));
   }
   ```
-  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다(예를 들어 톰캣에서 `allowCasualMultipartParsing`을 설정해도 됩니다). 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 함께 설정할 수 있습니다. `StandardServletMultipartResolver`만 설정하면 `MultipartHttpServletRequest`가 처리되지 않으므로 `@MultipartConfig`와 함께 설정해야 합니다.
+  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다(예를 들어 톰캣에서 `allowCasualMultipartParsing`을 설정해도 됩니다). 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 함께 설정할 수 있습니다. `StandardServletMultipartResolver` 하나만 설정하면 `MultipartHttpServletRequest`가 처리되지 않으므로 `@MultipartConfig`와 함께 설정해야 합니다.
 
   ```
   @Bean
@@ -201,7 +201,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
 redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다. 컨트롤러의 메소드가 redirection을 하면 현재 만들어진 model의 속성들이 querystring으로 추가되어 redirection URL로 전달되는데 이렇게 되면 값들이 그대로 노출됩니다. RedirectAttributes의 `addFlashAttribute`를 사용하면 일시적으로 저장된 속성들을 redirection 메소드의 model로 전달해줄 수 있기 때문에 URL에 나타나지 않습니다.
 
 - @ModelAttribute  
-`@ModelAttribute`는 지금은 없어진 `AbstractFormController`와 `SimpleFormController`에 해당하는 것이라고 보면 되겠습니다. 가장 많이 사용되는 메소드 인자 어노테이션이라고 할 수 있는데, 왜냐하면 화면으로부터 폼데이터를 받아서 데이터 바인딩을 거쳐 객체를 생성해주기 때문입니다. 동시에 뷰에서는 모델의 속성들에 접근하는 용도로 사용합니다. 즉 데이터를 주고받을 때 일반적으로 사용할 수 있는 어노테이션이 되겠습니다. 공식 문서의 설명을 그대로 옮겨보겠습니다.  
+`@ModelAttribute`는 지금은 없어진 `AbstractFormController`와 `SimpleFormController`에 해당하는 것이라고 보면 되겠습니다. 가장 많이 사용되는 어노테이션이라고 할 수 있는데, 왜냐하면 화면으로부터 폼데이터를 받아서 데이터 바인딩을 거쳐 객체를 생성해주기 때문입니다. 동시에 뷰에서는 모델의 속성들에 접근하는 용도로 사용합니다. 즉 데이터를 주고받을 때 일반적으로 사용할 수 있는 어노테이션이 되겠습니다. 공식 문서의 설명을 그대로 옮겨보겠습니다.  
   >You can use the @ModelAttribute annotation on a method argument to access an attribute from the model or have it be instantiated if not present. The model attribute is also overlain with values from HTTP Servlet request parameters whose names match to field names. This is referred to as data binding, and it saves you from having to deal with parsing and converting individual query parameters and form fields. 
 
    `@ModelAttribute`로 전달되는 객체는 여러 방법으로 생성될 수 있습니다. 가장 일반적인 것은 폼데이터나 경로 변수(path variable)의 이름과 객체의 필드명이 같을 때 그 값이 들어간 객체를 만듭니다(과거에는 이것을 "command object"라고 했습니다). 이때 객체는 setter를 가지고 있어야 합니다. 이것은 `@RequestBody`가 만들어주는 객체와 약간 다른 점인데 `@RequestBody`에서는 setter가 없어도 되기 때문입니다.  
@@ -237,7 +237,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
   ```  
   request 파라미터 `name`과 `age`의 값이 `TestDto`의 `name`과 `age` 필드에 입력되고 `TestDto` 타입의 객체인 `data`가 생성되어 메소드 안에서 사용할 수 있게 됩니다. `@ModelAttribute(name = "testDto")`의 `name` 속성은 뷰에서 모델의 값을 참조할 때 사용할 객체의 이름입니다.  
 
-  클래스 레벨에 `@SessionAttributes`를 사용하는 경우 `@ModelAttribute`의 속성을 `@SessionAttributes`에 저장할 수 있습니다. 이것은 일시적으로 유지되는 속성으로 한 컨트롤러 클래스 내의 다른 메소드들 사이에 어떤 값을 공유하고 싶을 때 유용합니다. 
+  클래스 레벨에 `@SessionAttributes`를 사용하는 경우 `@ModelAttribute`의 속성과 일치하면 `@SessionAttributes`에 저장된 값이 입력됩니다. `@SessionAttributes`는 일시적으로 유지되는 속성으로 한 컨트롤러 클래스 내의 다른 메소드들 사이에 어떤 값을 공유하고 싶을 때 유용합니다. 
 
   ```
   @Controller
@@ -280,7 +280,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
   ```
 
 - @SessionAttribute  
-클래스 레벨로 사용하는 `@SessionAttributes`와 구별해야 하는 것으로 HttpSession에 있는 속성을 가져올 때 사용합니다. 클래스 레벨의 `@SessionAttributes`가 해당 컨트롤러에서만 유효하고 `@ModelAttribute`에 바인딩된다면, <b>`@SessionAttribute`</b>는 모든 컨트롤러에서 세션의 속성을 참조할 수 있습니다. 
+클래스 레벨로 사용하는 `@SessionAttributes`와 구별해야 하는 것으로 HttpSession에 있는 속성을 가져올 때 사용합니다. 클래스 레벨의 `@SessionAttributes`가 해당 컨트롤러에서만 유효하고 `@ModelAttribute`에 바인딩되는 식이라면, <b>`@SessionAttribute`</b>는 모든 컨트롤러에서 세션의 속성을 참조할 수 있습니다. 
 
 컨트롤러 메소드가 리턴하는 주요 타입은 아래와 같은 것이 있습니다.
 
