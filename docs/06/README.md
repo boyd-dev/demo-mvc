@@ -237,7 +237,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
   ```  
   request 파라미터 `name`과 `age`의 값이 `TestDto`의 `name`과 `age` 필드에 입력되고 `TestDto` 타입의 객체인 `data`가 생성되어 메소드 안에서 사용할 수 있게 됩니다. `@ModelAttribute(name = "testDto")`의 `name` 속성은 뷰에서 모델의 값을 참조할 때 사용할 객체의 이름입니다.  
 
-  클래스 레벨에 `@SessionAttributes`를 사용하는 경우 `@ModelAttribute`의 속성과 일치하면 `@SessionAttributes`에 저장된 값이 입력됩니다. `@SessionAttributes`는 일시적으로 유지되는 속성으로 한 컨트롤러 클래스 내의 다른 메소드들 사이에 어떤 값을 공유하고 싶을 때 유용합니다. 
+  클래스 레벨에 `@SessionAttributes`를 사용하는 경우 `@SessionAttributes`에 저장된 속성이 `@ModelAttribute`의 속성과 일치하면 그 값이 입력됩니다. `@SessionAttributes`는 일시적으로 유지되는 속성으로 한 컨트롤러 클래스 내의 다른 메소드들 사이에 어떤 값을 공유하고 싶을 때 유용합니다. 
 
   ```
   @Controller
