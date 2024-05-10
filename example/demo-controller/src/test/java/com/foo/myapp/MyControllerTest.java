@@ -89,7 +89,7 @@ class MyControllerTest {
 				    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
 				    .param("name", "Kate")
 	        		.with(SecurityMockMvcRequestPostProcessors.httpBasic(USER_ID, USER_PASS))
-	        		.session(mockSession)) // create a session attribute at first request
+	        		.session(mockSession)) // create a session attribute at the first request
 		.andExpect(status().isOk())
 		.andExpect(view().name("main"))
 		.andExpect(model().attribute("result", "Hello, Kate"));
