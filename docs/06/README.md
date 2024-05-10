@@ -50,8 +50,20 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
 
 요청 URL 패턴은 두 가지 형태가 있습니다. 
 
-- PathPattern
-- AntPathMatcher
+- PathPattern  
+URL 경로와 매칭되도록 사전에 파싱된 패턴입니다. 웹용으로 설계된 이 솔루션은 인코딩 및 경로 변수를 효과적으로 처리합니다. 스프링 프레임워크 5.3 이후부터 권장하는 패턴 매칭 방식입니다. 기존의 엔트 방식과 호환됩니다. 웹 컨텍스트 설정에서 아래와 같이 활성화할 수 있습니다.
+
+  ```
+  @Override
+  public void configurePathMatch(PathMatchConfigurer configurer) {		
+		configurer.setPatternParser(new PathPatternParser());
+  }
+  ```
+
+- AntPathMatcher  
+ 엔트 기반의 URL 매칭 방식으로 스프링 프레임워크 전반에 걸처 범용적으로 사용됩니다. 문자열의 특성상 인코딩 및 URL의 문제를 효과적으로 처리하는 데 다소 비효율적인 면이 있습니다. 
+
+PathPattern의 등장 배경은 [여기](https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc)를 참조하세요.
 
 
 ## 컨트롤러 메소드의 인자들  
@@ -79,6 +91,8 @@ HTTP method에 따라 아래와 같은 축약된 어노테이션들을 사용할
   ```
 
 - PushBuilder  
+HTTP/2 스펙의 "서버 푸시 기술"과 관련된 인자로 서블릿 4부터 지원합니다. 기본 개념은 브라우저가 특정 리소스를 요청하면 서버는 관련된 리소스도 곧 요청될 수 있다고 판단하여 브라우저의 요청 전에 미리 "push"하는 기술입니다. 서블릿 스펙 4의 내용을 옮겨 보겠습니다. 
+  >Server push derives its contribution to improved perceived browser performance from the simple fact that servers are in a much better position than clients to know what additional assets (such as images, stylesheets and scripts) go along with initial requests. For example, it is possible for servers to know that whenever a browser requests index.html, it will shortly thereafter request header.gif, footer.gif and style.css. Since servers know this, they can preemptively start sending the bytes of these assets along side the bytes of the index.html.
 
 - Principal  
 현재 로그인 등을 통해 인증된 사용자 정보를 가진 객체로 예를 들어 스프링 시큐리티의 경우 `org.springframework.security.core.Authentication` 타입이 전달됩니다.
