@@ -282,23 +282,5 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
 - @SessionAttribute  
 클래스 레벨로 사용하는 `@SessionAttributes`와 구별해야 하는 것으로 HttpSession에 있는 속성을 가져올 때 사용합니다. 클래스 레벨의 `@SessionAttributes`가 해당 컨트롤러에서만 유효하고 `@ModelAttribute`에 바인딩되는 식이라면, <b>`@SessionAttribute`</b>는 모든 컨트롤러에서 세션의 속성을 참조할 수 있습니다. 
 
-## 컨트롤러 메소드의 리턴 타입
-컨트롤러 메소드가 리턴하는 주요 타입은 아래와 같은 것이 있습니다.
 
-- @ResponseBody
-
-- HttpEntity\<B\>, ResponseEntity\<B\>
-
-- HttpHeaders
-
-- String
-
-- @ModelAttribute
-
-- ModelAndView
-
-- void
-
-
-
-[처음](../README.md)
+[처음](../README.md)| [다음](../07/README.md)
