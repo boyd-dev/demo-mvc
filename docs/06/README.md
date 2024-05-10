@@ -61,12 +61,12 @@ URL 경로와 매칭되도록 사전에 파싱된 패턴입니다. 스프링 프
   ```
 
 - AntPathMatcher  
- 엔트 기반의 URL 매칭 방식으로 스프링 프레임워크 전반에 걸처 범용적으로 사용됩니다. 문자열의 특성상 인코딩 및 URL의 문제를 처리할 때 다소 비효율적인 면이 있습니다. PathPattern의 등장 배경은 [여기](https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc)를 참조하세요.
+ 엔트 기반의 URL 매칭 방식으로 스프링 프레임워크 전반에 걸처 범용적으로 사용됩니다. 문자열의 특성상 URL 인코딩 문제를 처리할 때 다소 비효율적인 면이 있습니다. PathPattern의 등장 배경은 [여기](https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc)를 참조하세요.
 
 
 ## 컨트롤러 메소드의 인자들  
 
-디스패처 서블릿은 `RequestMappingHandlerMapping`을 사용하여 메소드를 찾고 실행은 `RequestMappingHandlerAdapter`에 위임합니다. `RequestMappingHandlerAdapter`를 거치면서 메소드로 전달되는 인자들이 만들어지는데, 화면에서 전달된 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 메소드에 전달되는 인자들의 종류는 [여기에](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments) 잘 정리되어 있습니다.
+디스패처 서블릿은 `RequestMappingHandlerMapping`을 사용하여 메소드를 찾고 실행은 `RequestMappingHandlerAdapter`에 위임합니다. `RequestMappingHandlerAdapter`를 거치면서 메소드로 전달되는 인자들이 만들어지는데, 화면에서 전달된 파라미터들과 함께 부가적으로 추가되는 인자들도 있습니다. 이 과정은 `HandlerMethodArgumentResolver`에 의해 수행됩니다. 메소드에 전달되는 인자들의 종류는 [여기](https://docs.spring.io/spring-framework/docs/5.3.32/reference/html/web.html#mvc-ann-arguments)에 잘 정리되어 있습니다.
 
 컨트롤러 메소드가 받는 주요 인자들은 아래와 같습니다.
 
@@ -277,7 +277,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
     
 
 - Errors, BindingResult  
-뷰와 데이터를 주고 받으면서 바이딩될 때 발생하는 에러에 접근할 때 사용할 수 있는 인자입니다. 공식 문서의 설명을 옮겨보겠습니다.
+뷰와 데이터를 주고 받으면서 바인드하면서 발생하는 에러에 접근할 때 사용합니다. 공식 문서의 설명을 옮겨보겠습니다.
 
   >For access to errors from validation and data binding for a command object (that is, a @ModelAttribute argument) or errors from the validation of a @RequestBody or @RequestPart arguments. You must declare an Errors, or BindingResult argument immediately after the validated method argument.
 
@@ -292,7 +292,9 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
   ```
 
 - @SessionAttribute  
-클래스 레벨로 사용하는 `@SessionAttributes`와 구별해야 하는 것으로 HttpSession에 있는 속성을 가져올 때 사용합니다. 클래스 레벨의 `@SessionAttributes`가 해당 컨트롤러에서만 유효하고 `@ModelAttribute`에 바인딩되는 식이라면, <b>`@SessionAttribute`</b>는 모든 컨트롤러에서 세션의 속성을 참조할 수 있습니다. 
+클래스 레벨로 사용하는 `@SessionAttributes`와 구별해야 하는 것으로 HttpSession에 있는 속성을 가져올 때 사용합니다. 클래스 레벨의 `@SessionAttributes`가 해당 컨트롤러에서만 유효하고 `@ModelAttribute`에 바인딩되는 식이라면, <b>`@SessionAttribute`</b>는 모든 컨트롤러에서 세션의 속성을 참조할 수 있습니다.  
+
+예제와 테스트 케이스는 [여기]()를 참조하세요.
 
 
 [처음](../README.md) | [다음](../07/README.md)
