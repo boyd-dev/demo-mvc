@@ -193,7 +193,7 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
 		 registration.setMultipartConfig(new MultipartConfigElement(null, 2097152L, 4194304L, 1024*1024));
   }
   ```
-  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다(예를 들어 톰캣에서 `allowCasualMultipartParsing`을 설정해도 됩니다). 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 함께 설정할 수 있습니다. `StandardServletMultipartResolver` 하나만 설정하면 `MultipartHttpServletRequest`가 처리되지 않으므로 `@MultipartConfig`와 함께 설정해야 합니다.
+  여기서 유념할 것은 `@MultipartConfig`은 서블릿 컨테이너 레벨에서 파일 전송을 지원하는 것입니다(예를 들어 톰캣에서 `allowCasualMultipartParsing`을 설정해도 됩니다). 이와 함께 서블릿 3.0 기반으로 `multipart/form-data`를 파싱하는 [`StandardServletMultipartResolver`](https://docs.spring.io/spring-framework/docs/5.3.32/javadoc-api/org/springframework/web/multipart/support/StandardServletMultipartResolver.html)를 웹 컨텍스트에 함께 설정할 수 있습니다. `StandardServletMultipartResolver` 하나만 설정하면 `MultipartHttpServletRequest`가 처리되지 않으므로 `@MultipartConfig`와 함께 사용해야 합니다.
 
   ```
   @Bean
