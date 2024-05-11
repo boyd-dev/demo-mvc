@@ -144,6 +144,14 @@ HTTP request 메시지의 body로 전달되는 데이터를 받을 때 사용합
   @RequestBody(required = false) TestDto data
   data.getName(); //Patti
   ```
+@RequestBody 인자의 처리가 가능한 것은 내부적으로 `RequestMappingHandlerAdapter`가 `HttpMessageConverter`를 구현한 다양한 컨버터들을 이용하기 때문입니다. 디폴트로 등록되는 메시지 컨버터 빈은 아래와 같습니다.
+
+- ByteArrayHttpMessageConverter
+- StringHttpMessageConverter
+- FormHttpMessageConverter
+- SourceHttpMessageConverter
+
+이와 함께 json 라이브러리 Jackson 2가 설정되어 있으면 MappingJackson2HttpMessageConverter를 자동 등록합니다.
 
 - HttpEntity\<B\>  
 @RequestBody와 거의 동일. request의 헤더와 바디를 모두 가진 객체입니다.
