@@ -23,7 +23,7 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] {"/*"};
+		return new String[] {"/"};
 	}
 	
 	@Override
