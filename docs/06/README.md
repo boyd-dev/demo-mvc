@@ -61,7 +61,7 @@ URL 경로와 매칭되도록 사전에 파싱된 패턴입니다. 스프링 프
   ```
 
 - AntPathMatcher  
- 엔트 기반의 URL 매칭 방식으로 스프링 프레임워크 전반에 걸처 범용적으로 사용됩니다. 문자열의 특성상 URL 인코딩 문제를 처리할 때 다소 비효율적인 면이 있습니다. PathPattern의 등장 배경은 [여기](https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc)를 참조하세요.
+ 엔트 기반의 URL 매칭 방식으로 스프링 프레임워크 전반에 걸처 범용적으로 사용됩니다. 문자열의 특성상 URL 인코딩 문제를 처리할 때 다소 비효율적인 면이 있습니다. PathPattern의 등장 배경은 [여기](https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc)를 보세요.
 
 
 ## 컨트롤러 메소드의 인자들  
@@ -296,7 +296,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
 			bindingResult.getFieldErrors().stream().forEach(fe -> {				
 				 logger.info("BINDING ERROR {}={}",fe.getField(), bindingResult.getFieldValue(fe.getField()));
 			});
-	}
+  }
   ```
 
 - @SessionAttribute  
