@@ -2,7 +2,7 @@
 컨트롤러 메소드가 리턴하는 주요 타입은 아래와 같은 것이 있습니다.
 
 - @ResponseBody  
-`HttpMessageConverter`를 거쳐 응답을 리턴합니다. 뷰가 아닌 데이터만을 리턴할때 사용합니다. 그래서 json 데이터를 리턴할때 적용합니다. 컨트롤러 클래스 레벨에 주면 모든 메소드에 대해 적용됩니다. 
+`HttpMessageConverter`를 거쳐 응답을 리턴합니다. 뷰가 아닌 데이터만을 리턴할때 사용합니다. 그래서 보통 json 데이터를 리턴할때 적용합니다. 컨트롤러 클래스 레벨에 주면 모든 메소드에 대해 적용됩니다. 
 
 - HttpEntity\<B\>, ResponseEntity\<B\>  
 `@ResponseBody`와 거의 같고 단지 HTTP status와 헤더 정보를 더 가지고 있습니다.
@@ -34,5 +34,7 @@
 		}		
   }
   ```
+
+예제와 테스트 케이스는 [여기](https://github.com/boyd-dev/demo-mvc/tree/main/example/demo-controller)를 참조하세요.
 
 [처음](../README.md) 
