@@ -1,5 +1,8 @@
 package com.foo.myapp;
 
+import java.util.Objects;
+
+
 public class TestDto {
 	
 	private String name;
@@ -20,5 +23,27 @@ public class TestDto {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+	
+	@Override
+	public int hashCode() {		
+		return Objects.hash(this.name + String.valueOf(this.age));
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) return true;
+		
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}		
+		TestDto t = (TestDto) obj;
+		return (this.name + String.valueOf(this.age)).equals(t.name + String.valueOf(t.age));		
+	}
+	
+	
+	@Override
+	public String toString() {		
+		return this.name + ":" + this.age;
 	}
 }

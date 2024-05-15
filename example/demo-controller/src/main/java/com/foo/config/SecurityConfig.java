@@ -28,8 +28,7 @@ public class SecurityConfig {
 		    .httpBasic(Customizer.withDefaults())
 			.formLogin(Customizer.withDefaults())
 			.logout(logout -> logout.logoutUrl("/signout").deleteCookies("JSESSIONID"))
-			.exceptionHandling(t -> t.accessDeniedPage("/resources/error.html"))
-			.csrf(c -> c.disable()); 
+			.exceptionHandling(t -> t.accessDeniedPage("/resources/error.html")); 
 		    		
 		return http.build();
 	}	

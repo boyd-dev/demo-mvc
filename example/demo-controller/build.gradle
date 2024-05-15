@@ -56,6 +56,9 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.hamcrest:hamcrest:2.2'
     
+    testImplementation 'com.jayway.jsonpath:json-path:2.9.0'    
+    testImplementation 'org.skyscreamer:jsonassert:1.5.1'
+    
     
     // Data
     implementation "org.springframework:spring-jdbc:$springVersion"

@@ -89,7 +89,7 @@ URL 경로와 매칭되도록 사전에 파싱된 패턴입니다. 스프링 프
   ```
 
 - PushBuilder  
-HTTP/2 스펙의 "서버 푸시 기술"과 관련된 인자로 서블릿 4부터 지원합니다. 브라우저가 특정 리소스를 요청하면 서버는 관련된 리소스도 곧 요청될 수 있다고 판단하여 브라우저의 요청 전에 미리 "push"합니다. 서블릿 스펙 4의 내용을 옮겨 보겠습니다. 
+HTTP/2 스펙의 "서버 푸시 기술"과 관련된 인자로 서블릿 4부터 지원합니다. 브라우저가 특정 리소스를 요청하면 서버는 관련된 리소스도 곧 요청될 수 있다고 판단하여 브라우저의 요청 전에 미리 "push"합니다. 서블릿 4 스펙의 내용을 옮겨 보겠습니다. 
   >Server push derives its contribution to improved perceived browser performance from the simple fact that servers are in a much better position than clients to know what additional assets (such as images, stylesheets and scripts) go along with initial requests. For example, it is possible for servers to know that whenever a browser requests index.html, it will shortly thereafter request header.gif, footer.gif and style.css. Since servers know this, they can preemptively start sending the bytes of these assets along side the bytes of the index.html.
 
 - Principal  
