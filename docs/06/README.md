@@ -282,7 +282,9 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
 
   }
   ```
-    
+ `@ModelAttribute`는 생략이 가능합니다. 즉 다른 argument resolver에 의해 처리되지 않거나 단순한 값 타입이 아닌 경우에는 
+ 모두 `@ModelAttribute`로 취급되기 때문에 `@ModelAttribute TestDto data` 대신 `TestDto data`을 사용해도 되겠습니다.
+ 
 
 - Errors, BindingResult  
 뷰와 데이터를 주고 받으면서 바인드하면서 발생하는 에러에 접근할 때 사용합니다. 공식 문서의 설명을 옮겨보겠습니다.
