@@ -31,8 +31,8 @@ public class TestDto {
 
 	@Range(min = 30, max = 60, message = "invalid age")
 	private Integer age;
-
-    // getter and setter...
+	
+	// getter and setter...
 }
 ```
 기본으로 제공되는 제약조건 어노테이션은 [여기](https://docs.jboss.org/hibernate/validator/5.4/reference/en-US/html_single/#section-declaring-bean-constraints)를 참조하면 되겠습니다.  
@@ -63,7 +63,7 @@ public class ControllerExceptionHandler {
 	private static final Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
 	
 	@ExceptionHandler(value = BindException.class)
-    public ResponseEntity<String> handleBindingException(BindException be, HandlerMethod handlerMethod) {
+	public ResponseEntity<String> handleBindingException(BindException be, HandlerMethod handlerMethod) {
 		
 		logger.error("BindException - {}", handlerMethod.getMethod().getName());
         
@@ -85,7 +85,7 @@ public class ControllerExceptionHandler {
 		return ResponseEntity.badRequest()
 				.contentType(MediaType.APPLICATION_JSON)
 				.body(data);
-    }
+	}
 	
 }
 ```
