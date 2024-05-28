@@ -32,7 +32,7 @@ public class TestDto {
 	@Range(min = 30, max = 60, message = "invalid age")
 	private Integer age;
 
-   // getter and setter...
+    // getter and setter...
 }
 ```
 기본으로 제공되는 제약조건 어노테이션은 [여기](https://docs.jboss.org/hibernate/validator/5.4/reference/en-US/html_single/#section-declaring-bean-constraints)를 참조하면 되겠습니다.  
