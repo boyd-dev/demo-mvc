@@ -282,7 +282,7 @@ redirection할 때 필요한 속성들을 추가하는 용도로 사용합니다
 
   }
   ```
- `@ModelAttribute`는 생략이 가능합니다. 즉 다른 argument resolver에 의해 처리되지 않거나 단순한 값 타입이 아닌 경우에는 
+  `@ModelAttribute`는 생략이 가능합니다. 즉 다른 argument resolver에 의해 처리되지 않거나 단순한 값 타입이 아닌 경우에는 
  모두 `@ModelAttribute`로 취급되기 때문에 `@ModelAttribute TestDto data` 대신 `TestDto data`을 사용해도 되겠습니다.
  
 
